@@ -46,6 +46,22 @@ public class RequestParamController {
     }
 
     /**
+     * http://localhost:8080/request-param-v2_2?username=hello&age=20
+     * name과 value 파라미터 사용
+     * name과 value는 사실상 기능이 동일하다.
+     * 인자가 하나일 때는 value로 매핑된다.
+     */
+    @ResponseBody
+    @RequestMapping("/request-param-v2_2")
+    public String requestParamV2_2(
+            @RequestParam(name = "username") String memberName,
+            @RequestParam(value = "age") int memberAge) {
+
+        log.info("username={}, age={}", memberName, memberAge);
+        return "ok";
+    }
+
+    /**
      * @RequestParam 사용
      * HTTP 파라미터 이름이 변수 이름과 같으면 @RequestParam(name = "xx") 생략 가능
      */
